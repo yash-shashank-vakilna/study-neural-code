@@ -1,0 +1,23 @@
+# image files
+*.png
+*.fig
+
+# data files
+*.mat
+*.h5
+*.db
+*.zip
+*.csv
+
+# editing files
+*.asv
+
+# folders
+rough_old_scripts/
+data/
+*r1.m
+*r2.m
+*r3.m
+*output*
+neighbors/old-results
+neighbors/old-relevant-scripts
