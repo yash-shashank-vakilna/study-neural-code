@@ -13,7 +13,7 @@ figure(1)
 for regi=1:4
     
     subplot(2,2,figno(regi));
-    p=polarhistogram((to_plot_3cyc{regi}),40);
+    p=polarhistogram((to_plot_3cyc{regi}'),40);
     max_r = p.Parent.RLim(2);
     mean_ang = circ_mean(to_plot_3cyc{regi});
     hold on
