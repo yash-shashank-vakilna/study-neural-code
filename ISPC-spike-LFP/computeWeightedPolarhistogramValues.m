@@ -1,22 +1,21 @@
-function [ histcounts, binedges] = computeWeightedPolarhistogramValues ( peak_train, LFP_train, nbins )
+function [ histcounts] = computeWeightedPolarhistogramValues ( peak_train, LFP_train, nbins , powerWeight)
 %for all the angles corresponding to non-zero values of peak train, the
 %code extracts angle series using hilbert transform 
 
 angleS = angle(hilbert(LFP_train));
 
-% weightedspikeAngleDistro = angleS.*sign(peak_train).*LFP_train;
-% weightedspikeAngleDistro( weightedspikeAngleDistro == 0) = [];
-% weightedspikeAngleDistro = full(weightedspikeAngleDistro);
-weightedspikeAngleDistro = []; spikeAngleDistro = [];
+weightedspikeAngleDistro = [];
+histcounts = []; 
 spikeIndex = find(peak_train);
 for sfi = 1:length(spikeIndex)
     weightedspikeAngleDistro = [weightedspikeAngleDistro, ...
-        repmat(angleS(spikeIndex(sfi)),1,round(10*abs(LFP_train(spikeIndex(sfi)))))];
-    spikeAngleDistro = [spikeAngleDistro, angleS(spikeIndex(sfi))];
+        repmat(angleS(spikeIndex(sfi)),1,round(powerWeight*abs(LFP_train(spikeIndex(sfi)))))];
 end
-p=polarhistogram(weightedspikeAngleDistro,nbins,'visible','off');
-histcounts = round(p.BinCounts./10);
-binedges = p.BinEdges;
+if not(isempty(spikeIndex))
+    binedges = linspace(-pi,pi,nbins+1);
+    p = polarhistogram(weightedspikeAngleDistro,'binEdges', binedges,'visible','off');
+    histcounts = round(p.BinCounts./powerWeight);
+end
 
 
 

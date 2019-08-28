@@ -1,5 +1,5 @@
 
-%%
+%% Computes magnitude weighted polar histogrms for all subregions
 cd 'C:\Users\yashv\Desktop\Yash\File Sync(1)\Yash\SCA-spike-lfp-theta\data'
 fName= dir('*0001'); fName = string({fName(:).name});  
 meaNames = ["mea_EC","mea_DG","mea_CA3","mea_CA1","mea_tunnels"];
