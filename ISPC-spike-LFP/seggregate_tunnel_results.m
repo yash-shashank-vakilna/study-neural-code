@@ -1,3 +1,4 @@
+function tunnelSetSeparatedResult = formatTunnelResultsbySeggregate (allregionresults, regList)
 tunnelResultRegion = cell(1,7);
 regList = ["CW","CW","ccw","ccw","ccw"];
 chan_order = {[25:34; 15:24; 35:44; 1:10],...

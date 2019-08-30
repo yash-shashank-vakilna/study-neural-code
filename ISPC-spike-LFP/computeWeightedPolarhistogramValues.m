@@ -17,7 +17,5 @@ if not(isempty(spikeIndex))
     histcounts = round(p.BinCounts./powerWeight);
 end
 
-
-
 end
 
