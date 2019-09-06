@@ -1,5 +1,5 @@
 to_plot = cell(1,4);
-
+tunnelResultRegion = allregionresults;
 for regi = 1:4
     to_plot{regi} = cell(1,3);
     for fi = 3:7
