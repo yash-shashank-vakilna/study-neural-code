@@ -1,6 +1,6 @@
 
-tunnelSetSeparatedResult = formatTunnelResultsbySeggregate (allregionresults);
-allregionresults = tunnelSetSeparatedResult;
+% tunnelSetSeparatedResult = formatTunnelResultsbySeggregate (allregionresults);
+% allregionresults = tunnelSetSeparatedResult;
 to_plot = cell(1,4);
 for regi = 1:4
     to_plot{regi} = cell(1,2);
