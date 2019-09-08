@@ -1,12 +1,11 @@
 to_plot = cell(1,4);
-tunnelResultRegion = allregionresults;
+% tunnelResultRegion = allregionresults;
 for regi = 1:4
     to_plot{regi} = cell(1,3);
     for fi = 3:7
-        for chani = 1:length(tunnelResultRegion{fi}{regi})
-            to_plot{regi}{1} = [ to_plot{regi}{1}  tunnelResultRegion{fi}{regi}{chani,1}];
-            to_plot{regi}{2} = [ to_plot{regi}{2}  tunnelResultRegion{fi}{regi}{chani,2}];
-            to_plot{regi}{3} = [to_plot{regi}{3} repmat(fi, 1, length(tunnelResultRegion{fi}{regi}{chani,2}))];
+        for chani = 1:length(allregionresults{fi}{regi})
+            to_plot{regi}{1} = [ to_plot{regi}{1};  allregionresults{fi}{regi}{chani,1}];
+            to_plot{regi}{2} = [ to_plot{regi}{2};  allregionresults{fi}{regi}{chani,2}];
         end
     end
 end
