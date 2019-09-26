@@ -1,3 +1,5 @@
+%% Consolidate allregionresult to plot by segrregating meawise
+
 
 % tunnelSetSeparatedResult = formatTunnelResultsbySeggregate (allregionresults);
 % allregionresults = tunnelSetSeparatedResult;
@@ -13,15 +15,15 @@ for regi = 1:4
     end
 end
     
-%%
+%% Removing 0 SR
 for regi = 1:4
     ind = to_plot{regi}{2} == 0;
     to_plot{regi}{1}(ind) = [];
     to_plot{regi}{2}(ind) = [];
 end
 %%
-% tit = ["EC","DG","CA3","CA1"];
-tit = ["EC-DG","DG-CA3","CA3-CA1","CA1-EC"];
+tit = ["EC","DG","CA3","CA1"];
+% tit = ["EC-DG","DG-CA3","CA3-CA1","CA1-EC"];
 figno = [1,2,4,3];
 figure(1), clf
 for regi=1:4

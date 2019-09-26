@@ -1,8 +1,18 @@
 % Using allregionresult cell array it populates to_plot cell array
 % Concatenates allregionresults and seggregate regionswise
-load ./data/spike-height-v-insta-power/spike-height-v-insta-phase.mat
-to_plot = cell(1,4);
 
+tunnelF = 0;
+load ./data/spike-height-v-insta-power/spike-height-v-insta-phase.mat
+
+if tunnelF
+    tunnelSetSeparatedResult = formatTunnelResultsbySeggregate (allregionresults);
+    allregionresults = tunnelSetSeparatedResult;
+    regList = ["EC-DG","DG-CA3","CA3-CA1","CA1-EC"];
+else
+    regList = ["EC","DG","CA3","CA1"];
+end
+to_plot = cell(1,4);
+allregionresults = tunnelSetSeparatedResult;
 for regi = 1:4
     to_plot{regi} = cell(1,2);
     for fi = [ 3 4 5 6 7]
@@ -12,8 +22,7 @@ for regi = 1:4
 end
 
 %% plot spike-height-v-phase
-regList = ["EC","DG","CA3","CA1"];
-figno = [ 1 2 4 3];
+
 figure(2)
 for regi = 1:4
     p(regi)=subplot(2,2, figno(regi));

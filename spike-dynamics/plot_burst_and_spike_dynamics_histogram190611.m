@@ -151,7 +151,7 @@ title('Intraburst spike rate','FontSize',16)
 xlabel('Hz','Color','k','FontSize',16)
 ylabel('Count','Color','k','FontSize',16)
 uistack(bkax,'bottom'); % this moves it to the background.
-saveas(gcf,'IBSR.png')
+% saveas(gcf,'IBSR.png')
 %% Inter burst interval% log-log plot and best fit line
 regList = {'EC','DG','CA3','CA1'}; regOrder = [1 2 4 3 ]; ax = [];
 Lim = [1.2 2 1.5 1.2];
@@ -180,9 +180,9 @@ for meaI = 1:4
     lx = logspace(-1,2); ly = 10.^(coeff(2)*log10(lx)+coeff(1));
     plot(lx,ly)
     
-    text(10^1,1,"Slope = "+round(coeff(2),2)+", Intercept = "+round(coeff(1),2))
-    text(10^1,0.5,"R^2 = "+round(mdl.Rsquared.Ordinary,2))
-    text(10^1,0.25,"P-value < 0.0001")
+%     text(10^1,1,"Slope = "+round(coeff(2),2)+", Intercept = "+round(coeff(1),2))
+%     text(10^1,0.5,"R^2 = "+round(mdl.Rsquared.Ordinary,2))
+%     text(10^1,0.25,"P-value < 0.0001")
     title(regList{meaI})
     set(gca,'fontsize',16)
     ax = [ax tax];
@@ -196,7 +196,7 @@ title('Interburst Interval','FontSize',16)
 xlabel('IBI (s)','Color','k','FontSize',16)
 ylabel('Pr(X \geq x)','Color','k','FontSize',16)
 uistack(bkax,'bottom'); % this moves it to the background.
-saveas(gcf,'ibi.png')
+% saveas(gcf,'ibi.png')
 
 %% Intra-burst spike rate
 regList = {'EC','DG','CA3','CA1'}; regOrder = [1 2 4 3 ]; ax = [];
@@ -248,7 +248,9 @@ saveas(gcf, 'ibsr_singleC.png')
 
 %% Burst duration 
 %%histogram
-regList = {'EC','DG','CA3','CA1'}; regOrder = [1 2 4 3 ]; ax = [];
+% regList = {'EC','DG','CA3','CA1'}; 
+regList = {'EC-DG','DG-CA','CA3-CA1','CA1-EC'};
+regOrder = [1 2 4 3 ]; ax = [];
 f1 = figure(1);
 bkclr = get(f1,'Color') ; % The figure's background color
 xEdge = linspace(0,1,500); xCenter = conv(xEdge, [0.5 0.5], 'valid').*1e3;

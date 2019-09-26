@@ -17,7 +17,7 @@ for regI = 1:4
     %% Plot scatter plot
     hold on
     loghistQ = log10(histQ); nzI = loghistQ < 1;
-    p = scatter(histQ(nzI), prob(nzI),strcat('.',clr{regI}),'DisplayName',regList{regI});
+    p = scatter(histQ(nzI), prob(nzI),'filled',strcat('o',clr{regI}),'DisplayName',regList{regI});
     set(gca,'YScale','log','XScale','log')
     %% Plot linear regression 
     nzI =  loghistQ < maxLim(regI) & loghistQ > minLim(regI);                                 % Normalize and remove outliers
