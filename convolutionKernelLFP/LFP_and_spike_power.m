@@ -9,7 +9,7 @@ for regI = 1:length(meaNames)
     cd ../spikes
     spikeMEA = load(meaNames(regI));
     fs = rawMEA.mea.par.fs; 
-    for chani = 15%1:length(rawMEA.mea.channel_names)
+    for chani = 1:length(rawMEA.mea.channel_names)
         %%
         spikeSnippet = getSpikeSnippets...
             (spikeMEA.mea.spike_data{chani}, rawMEA.mea.raw_data{chani}, 1, fs);
@@ -34,9 +34,9 @@ for regI = 1:length(meaNames)
     end
 end
 %%
-% x = spikeSnippet{spiki};
+x = spikeSnippet{spiki};
 x = zscore(double(x));
-% [spikewaveform] = extract_spikes_from_spikecutouts(x, ts,1);
+[spikewaveform] = extract_spikes_from_spikecutouts(x, ts,1);
 % plot(ts, spikewaveform)
 [wt,f]=cwt(x,'amor',25e3);
 e = calculates_energy_from_cwt(wt, f);
@@ -52,12 +52,5 @@ set(gca,'xlim',[0.8 1.2])
 fig = computeCWTscalogram( spikewaveform, subName, chanName, spiki,3);
 set(gca,'xlim',[0.8 1.2])
 tr_spikewaveform = translateANDcompute3spikes(spikewaveform, 40);
-%%
-[wt_spike,f_spike]=cwt(tr_spikewaveform,'amor',25e3);
-e_burst = calculates_energy_from_cwt(wt_spike, f_spike);
-% saveas(gcf, 'DG-L3-653-spikes.png')
 
-%%
-to_plot = [e, 0.0362*e, 0.0896*e]
-pie(to_plot)
-set(gca,'FontSize',16)
+% saveas(gcf, 'DG-L3-653-spikes.png')

@@ -11,7 +11,7 @@ refrTime = refrTime*sf/1e3;
 no_chan = length(mea.filtered_data);
 peak_train_array = cell(1, no_chan);
 for chani = 1:no_chan
-    data = double(mea.filtered_data{chani});
+    data = zscore(double(mea.filtered_data{chani}));
     thresh = autComputTh(data,sf,multCoeff);
     
     % -----------------------------------------------------------------        

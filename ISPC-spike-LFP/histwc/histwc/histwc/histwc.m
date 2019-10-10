@@ -24,12 +24,17 @@
 % BSD License
 % July 2013
 
-function [histw, vinterval] = histwc(vv, ww, nbins)
-  minV  = min(vv);
-  maxV  = max(vv);
-  delta = (maxV-minV)/nbins;
-  vinterval = linspace(minV, maxV, nbins)-delta/2.0;
-  histw = zeros(nbins, 1);
+function [histw, vinterval] = histwc(vv, ww, nbins, binedges)
+if exist('binedges' ,'var')
+    vinterval = binedges;
+    histw = zeros(length(binedges), 1);
+else
+    minV  = min(vv);
+    maxV  = max(vv);
+    delta = (maxV-minV)/nbins;
+    vinterval = linspace(minV, maxV, nbins)-delta/2.0;
+    histw = zeros(nbins, 1);
+end
   for i=1:length(vv)
     ind = find(vinterval < vv(i), 1, 'last' );
     if ~isempty(ind)
